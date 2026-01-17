@@ -20,11 +20,11 @@ func main () {
 	var StartString string
 	var interestString string
 	var needString string
-	var balance int
-	var years int
-	var start int
-	var interest int
-	var need int
+	var balance float64
+	var years float64
+	var start float64
+	var interest float64
+	var need float64
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -32,17 +32,18 @@ func main () {
 	fmt.Printf("Enter the starting bank account amount: ")
 	StartString, _ = reader.ReadString('\n')
 	StartString = strings.TrimSpace(StartString)
-	start, _ = strconv.Atoi(StartString)
+	start, _ = strconv.ParseFloat(StartString, 64)
 
 	fmt.Printf("Enter the yearly interest rate (as a percentage): ")
 	interestString, _ = reader.ReadString('\n')
 	interestString = strings.TrimSpace(interestString)
-	interest, _ = strconv.Atoi(interestString)
+	interest, _ = strconv.ParseFloat(interestString, 64)
+	interest = interest/100
 
 	fmt.Printf("Enter the amount needed for post-secondary education: ")
 	needString, _ = reader.ReadString('\n')
 	needString = strings.TrimSpace(needString)
-	need, _ = strconv.Atoi(needString)
+	need, _ = strconv.ParseFloat(needString, 64)
 
 	// for calculations
 
@@ -53,7 +54,7 @@ func main () {
   years++;
 }
 
-  fmt.Printf("It will take %d years for the starting bank account to reach the required amount for post-secondary education.", years)
+  fmt.Printf("It will take %2.f years for the starting bank account to reach the required amount for post-secondary education.\n", years)
 
 	fmt.Println("\nDone.")
 }
